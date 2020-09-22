@@ -1,0 +1,35 @@
+{
+  "name": "simple-docker-express-mysql-boilerplate",
+  "version": "1.0.0",
+  "description": "A simple Docker-Node-Mysql Boilerplate",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LAccastello/simple-docker-express-mysql-boilerplate.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "javascript",
+    "mysql",
+    "boilerplate",
+    "sequelize"
+  ],
+  "author": "Lucas Accastello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LAccastello/simple-docker-express-mysql-boilerplate/issues"
+  },
+  "homepage": "https://github.com/LAccastello/simple-docker-express-mysql-boilerplate#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  }
+}

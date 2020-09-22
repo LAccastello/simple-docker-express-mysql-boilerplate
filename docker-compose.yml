@@ -1,0 +1,52 @@
+version: '2'
+
+services:
+  nodejs:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: unless-stopped
+    depends_on:
+        - db
+    env_file: .env
+    environment:
+        - MYSQL_USER=$MYSQL_USER
+        - MYSQL_PASSWORD=$MYSQL_PASSWORD
+        - MYSQL_DATABASE=$MYSQL_DATABASE
+        - MYSQL_HOST=$MYSQL_HOST
+    ports:
+        - "8080:8080" 
+        - "9229:9229"
+    volumes:
+        - .:/home/node/app
+        - node_modules:/home/node/app/node_modules
+    networks:
+        - app-network
+    command: ./wait-for.sh db:3306 -- /home/node/app/node_modules/.bin/nodemon --inspect=0.0.0.0 app/server.js
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    restart: unless-stopped
+    env_file: .env
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+        - MYSQL_USER=$MYSQL_USER
+        - MYSQL_PASSWORD=$MYSQL_PASSWORD
+        - MYSQL_DATABASE=$MYSQL_DATABASE
+    volumes:     
+        - dbdata:/var/lib/mysql
+    networks:
+        - app-network
+
+networks:
+    app-network:
+        driver: bridge
+    
+volumes:
+    dbdata:
+    node_modules:
