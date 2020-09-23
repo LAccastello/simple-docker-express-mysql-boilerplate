@@ -7,7 +7,6 @@ const sequelize = new Sequelize(MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, {
   port: MYSQL_PORT,
   dialect: MYSQL_DIALECT,
   operatorsAliases: 0,
-
   pool: {
     max: 5,
     min: 0,
